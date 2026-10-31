@@ -1,0 +1,81 @@
+# English — base translations
+[skipToContent]
+other = "Skip to content"
+
+[mainNav]
+other = "Main navigation"
+
+[footerNav]
+other = "Footer navigation"
+
+[paginationNav]
+other = "Pagination"
+
+[paginationPrev]
+other = "← Previous"
+
+[paginationNext]
+other = "Next →"
+
+[search]
+other = "Search"
+
+[searchPlaceholder]
+other = "Search…"
+
+[searchResults]
+other = "Search results"
+
+[noSearchResults]
+other = "No results found."
+
+[recentPosts]
+other = "Recent posts"
+
+[allPosts]
+other = "All posts"
+
+[inPictures]
+other = "In pictures"
+
+[gallery]
+other = "Gallery"
+
+[visitGallery]
+other = "Visit gallery"
+
+[fromNotebook]
+other = "From the notebook"
+
+[noPosts]
+other = "No posts yet."
+
+[readArticle]
+other = "Read article"
+
+[aLittleCorner]
+other = "A little corner of the world"
+
+[notesAndProjects]
+other = "Notes & projects"
+
+[pageNotFound]
+other = "Page not found"
+
+[pageNotFoundDetail]
+other = "This page may have moved."
+
+[returnHome]
+other = "Return home"
+
+[backToAllPosts]
+other = "← All posts"
+
+[translations]
+other = "Translations"
+
+[languageSwitcher]
+other = "Language"
+
+[readTime]
+other = "min read"

@@ -1,0 +1,81 @@
+# Spanish
+[siteskipToContent]
+other = "Saltar al contenido"
+
+[mainNav]
+other = "Navegación principal"
+
+[footerNav]
+other = "Navegación del pie"
+
+[paginationNav]
+other = "Paginación"
+
+[paginationPrev]
+other = "← Anterior"
+
+[paginationNext]
+other = "Siguiente →"
+
+[search]
+other = "Buscar"
+
+[searchPlaceholder]
+other = "Buscar…"
+
+[searchResults]
+other = "Resultados de búsqueda"
+
+[noSearchResults]
+other = "No se encontraron resultados."
+
+[recentPosts]
+other = "Entradas recientes"
+
+[allPosts]
+other = "Todas las entradas"
+
+[inPictures]
+other = "En imágenes"
+
+[gallery]
+other = "Galería"
+
+[visitGallery]
+other = "Visitar galería"
+
+[fromNotebook]
+other = "Desde el cuaderno"
+
+[noPosts]
+other = "Todavía no hay entradas."
+
+[readArticle]
+other = "Leer artículo"
+
+[aLittleCorner]
+other = "Un rinconcito del mundo"
+
+[notesAndProjects]
+other = "Notas y proyectos"
+
+[pageNotFound]
+other = "Página no encontrada"
+
+[pageNotFoundDetail]
+other = "Puede que esta página se haya movido."
+
+[returnHome]
+other = "Volver al inicio"
+
+[backToAllPosts]
+other = "← Todas las entradas"
+
+[translations]
+other = "Traducciones"
+
+[languageSwitcher]
+other = "Idioma"
+
+[readTime]
+other = "min de lectura"

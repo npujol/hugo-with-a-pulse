@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ site.Language.Lang | default "en" }}">
+<html lang="{{ site.Language.Locale | default "en" }}" dir="{{ site.Language.Direction | default "ltr" }}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -14,10 +14,11 @@
   {{ if site.Params.search.enable }}{{ with resources.Get "js/search.js" }}{{ $script := . | minify | fingerprint }}<script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}" defer></script>{{ end }}{{ end }}
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to content</a>
+  <a class="skip-link" href="#main">{{ i18n "skipToContent" }}</a>
   <header class="site-header"><a class="site-title" href="{{ site.Home.RelPermalink }}">{{ site.Title }}</a>
-    <nav aria-label="Main navigation">{{ range site.Menus.main }}<a href="{{ .URL }}">{{ .Name }}</a>{{ end }}</nav>
+    <nav aria-label="{{ i18n "mainNav" }}">{{ range site.Menus.main }}<a href="{{ .URL }}">{{ .Name }}</a>{{ end }}</nav>
     {{ partial "my-hugo/search.html" . }}
+    {{ partial "my-hugo/i18n.html" . }}
   </header>
   <main id="main">
     {{ if not .Params.headless }}
@@ -25,13 +26,13 @@
       {{ else if eq .Section "slide" }}{{ partial "my-hugo/slide.html" . }}
       {{ else if or .IsSection (eq .Kind "taxonomy") (eq .Kind "term") }}{{ partial "my-hugo/list.html" . }}
       {{ else if and .File (eq .File.ContentBaseName "pin") }}{{ partial "my-hugo/single.html" . }}
-      {{ else if eq .Kind "404" }}{{ block "main" . }}<h1>Page not found</h1><p><a href="{{ site.Home.RelPermalink }}">Return home</a></p>{{ end }}
+      {{ else if eq .Kind "404" }}{{ block "main" . }}<h1>{{ i18n "pageNotFound" }}</h1><p><a href="{{ site.Home.RelPermalink }}">{{ i18n "returnHome" }}</a></p>{{ end }}
       {{ else }}{{ partial "my-hugo/single.html" . }}{{ end }}
     {{ end }}
   </main>
   <footer class="site-footer">
     <div class="footer-main">{{ with site.GetPage "footer" }}<div class="footer-content">{{ .Content }}</div>{{ end }}
-      <nav aria-label="Footer navigation">{{ range site.Menus.footer }}{{ $url := .URL }}{{ if eq .Identifier "email" }}{{ $url = printf "mailto:%s" site.Params.author.email }}{{ end }}<a href="{{ $url }}"{{ with .Params.target }} target="{{ . }}" rel="noopener noreferrer"{{ end }}>{{ .Name }}</a>{{ end }}</nav>
+      <nav aria-label="{{ i18n "footerNav" }}">{{ range site.Menus.footer }}{{ $url := .URL }}{{ if eq .Identifier "email" }}{{ $url = printf "mailto:%s" site.Params.author.email }}{{ end }}<a href="{{ $url }}"{{ with .Params.target }} target="{{ . }}" rel="noopener noreferrer"{{ end }}>{{ .Name }}</a>{{ end }}</nav>
     </div>
     <small>{{ with site.Params.copyright }}{{ . }}{{ else }}© {{ now.Year }} {{ site.Title }}{{ end }}</small>
   </footer>

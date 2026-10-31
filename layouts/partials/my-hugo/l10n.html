@@ -1,0 +1,11 @@
+{{- /* In-page translation links */ -}}
+{{- if and .IsTranslated hugo.IsMultilingual -}}
+<aside class="translations">
+  <p class="eyebrow">{{ i18n "translations" }}</p>
+  <ul class="translation-list">
+    {{- range .Translations }}
+    <li lang="{{ .Lang }}"><a href="{{ .RelPermalink }}" hreflang="{{ .Lang }}">{{ partial "i18n/flag.html" .Lang }} {{ .Language.Label }}</a></li>
+    {{- end }}
+  </ul>
+</aside>
+{{- end -}}

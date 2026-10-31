@@ -150,3 +150,13 @@ time, .post-meta { color: var(--muted); font-size: .85rem; white-space: nowrap; 
 .pagination-numbers { display: flex; gap: 0.5rem; }
 .pagination-numbers [aria-current="page"] { text-decoration: underline; text-underline-offset: 4px; font-weight: 700; }
 .pagination-gap { opacity: 0.5; }
+
+/* Language switcher */
+.lang-switcher { position: relative; display: inline-flex; }
+.lang-switcher summary { list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 0.3rem; padding: 0.3rem 0.6rem; border: 1px solid currentColor; border-radius: 999px; }
+.lang-switcher summary::-webkit-details-marker { display: none; }
+.lang-list { position: absolute; top: calc(100% + 0.5rem); right: 0; z-index: 20; list-style: none; margin: 0; padding: 0.25rem; background: #101018; border: 1px solid currentColor; border-radius: 0.5rem; box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.5); }
+.lang-list a { display: flex; align-items: center; gap: 0.5rem; padding: 0.4rem 0.6rem; border-radius: 0.375rem; white-space: nowrap; }
+.lang-list a:hover, .lang-list a:focus { background: rgba(255, 255, 255, 0.08); }
+.translations { margin-top: 2rem; }
+.translation-list { list-style: none; padding: 0; display: flex; gap: 1rem; flex-wrap: wrap; }

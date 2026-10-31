@@ -3,10 +3,10 @@
 <section class="feature-slide" aria-label="{{ $slide.Title }}">
   <div class="feature-image" style="--feature-image: url('{{ . | relURL }}')"></div>
   <div class="feature-copy">
-    <p class="eyebrow">A little corner of the world</p>
+    <p class="eyebrow">{{ i18n "aLittleCorner" }}</p>
     <h2>{{ $slide.Title }}</h2>
     <div class="feature-description">{{ $slide.Content }}</div>
-    {{ with site.GetPage "pin.md" }}<a class="feature-link" href="{{ .RelPermalink }}">Gallery <span aria-hidden="true">→</span></a>{{ end }}
+    {{ with site.GetPage "pin.md" }}<a class="feature-link" href="{{ .RelPermalink }}">{{ i18n "gallery" }} <span aria-hidden="true">→</span></a>{{ end }}
   </div>
 </section>
 {{- end -}}

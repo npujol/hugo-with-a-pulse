@@ -1,0 +1,4 @@
+{{- /* Returns a flag emoji for a language code */ -}}
+{{- $code := strings.ToLower (replaceRE "[-_].*$" "" (string (. | default "en"))) -}}
+{{- $flags := dict "en" "🇬🇧" "es" "🇪🇸" "de" "🇩🇪" "fr" "🇫🇷" "it" "🇮🇹" "pt" "🇵🇹" "nl" "🇳🇱" "pl" "🇵🇱" "sv" "🇸🇪" "da" "🇩🇰" "fi" "🇫🇮" "no" "🇳🇴" "ja" "🇯🇵" "ko" "🇰🇷" "zh" "🇨🇳" "ru" "🇷🇺" "tr" "🇹🇷" "ar" "🇸🇦" "he" "🇮🇱" "hi" "🇮🇳" "ca" "🏳️" "eu" "🏳️" "gl" "🏳️" -}}
+{{- index $flags $code | default "🏳️" -}}

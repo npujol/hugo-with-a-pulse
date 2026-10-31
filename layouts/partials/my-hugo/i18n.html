@@ -1,0 +1,24 @@
+{{- /* Language switcher dropdown; rendered only in multilingual sites */ -}}
+{{- if hugo.IsMultilingual -}}
+{{- $langs := slice -}}
+{{- if .IsTranslated -}}
+  {{- $langs = .Translations -}}
+{{- else -}}
+  {{- range hugo.Sites }}{{ with .Home }}{{ $langs = $langs | append . }}{{ end }}{{ end -}}
+{{- end -}}
+{{- $current := site.Language -}}
+<details class="lang-switcher">
+  <summary aria-label="{{ i18n "languageSwitcher" }}">
+    <span class="lang-flag" aria-hidden="true">{{ partial "i18n/flag.html" $current.Lang }}</span><span class="lang-code">{{ upper $current.Lang }}</span>
+  </summary>
+  <ul class="lang-list" role="list">
+    {{- range $langs }}{{ if ne .Lang $current.Lang }}
+    <li><a href="{{ .RelPermalink }}" hreflang="{{ .Lang }}" lang="{{ .Lang }}">
+      <span class="lang-flag" aria-hidden="true">{{ partial "i18n/flag.html" .Lang }}</span>
+      <span class="lang-code">{{ upper .Lang }}</span>
+      <span class="lang-name">{{ .Language.Label }}</span>
+    </a></li>
+    {{ end }}{{ end -}}
+  </ul>
+</details>
+{{- end -}}

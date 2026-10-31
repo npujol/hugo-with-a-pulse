@@ -1,10 +1,10 @@
 {{- $paginator := .Paginator -}}
 {{- if gt $paginator.TotalPages 1 -}}
-<nav class="pagination" aria-label="Pagination">
+<nav class="pagination" aria-label="{{ i18n "paginationNav" }}">
   {{- with $paginator.Prev -}}
-    <a class="pagination-prev" href="{{ .URL }}" rel="prev">← Previous</a>
+    <a class="pagination-prev" href="{{ .URL }}" rel="prev">{{ i18n "paginationPrev" }}</a>
   {{- else -}}
-    <span class="pagination-prev" aria-disabled="true">← Previous</span>
+    <span class="pagination-prev" aria-disabled="true">{{ i18n "paginationPrev" }}</span>
   {{- end -}}
 
   <span class="pagination-numbers">
@@ -19,9 +19,9 @@
   </span>
 
   {{- with $paginator.Next -}}
-    <a class="pagination-next" href="{{ .URL }}" rel="next">Next →</a>
+    <a class="pagination-next" href="{{ .URL }}" rel="next">{{ i18n "paginationNext" }}</a>
   {{- else -}}
-    <span class="pagination-next" aria-disabled="true">Next →</span>
+    <span class="pagination-next" aria-disabled="true">{{ i18n "paginationNext" }}</span>
   {{- end -}}
 </nav>
 {{- end -}}
