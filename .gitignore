@@ -31,3 +31,8 @@ go.work.sum
 # Editor/IDE
 # .idea/
 # .vscode/
+
+# Hugo build output
+exampleSite/public/
+exampleSite/.hugo_build.lock
+.hugo_build.lock

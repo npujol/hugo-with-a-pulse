@@ -1,7 +1,7 @@
 <section class="home">
   {{ $home := site.GetPage "/" }}
   {{ with $home }}<article class="home-intro">
-    <div class="home-portrait"><img class="cover home-cover" src="{{ "/medias/me2.jpg" | relURL }}" alt="Naivy Pujol Méndez"><p class="home-name">Naivy Pujol Méndez</p><p class="home-role">Software engineer · Berlin</p></div>
+    <div class="home-portrait">{{ with site.Params.portrait }}<img class="cover home-cover" src="{{ . | relURL }}" alt="{{ site.Params.author | default site.Title }}">{{ end }}<p class="home-name">{{ site.Params.author | default site.Title }}</p>{{ with site.Params.role }}<p class="home-role">{{ . }}</p>{{ end }}</div>
     <div class="home-copy"><div class="content">{{ .Content }}</div></div>
   </article>{{ else }}<h1>{{ site.Title }}</h1>{{ end }}
   {{ with site.GetPage "slide.md" }}{{ partial "my-hugo/slide.html" . }}{{ end }}

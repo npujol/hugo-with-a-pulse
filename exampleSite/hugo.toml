@@ -1,0 +1,17 @@
+baseURL = "/"
+locale = "en-US"
+title = "Hugo With a Pulse — Demo"
+theme = "hugo-with-a-pulse"
+disableKinds = ["taxonomy", "term", "rss", "sitemap", "robotsTXT"]
+
+[params]
+author = "Sample Person"
+role = "Software engineer · Somewhere on Earth"
+portrait = "/medias/sample-portrait.svg"
+copyright = "© Sample Person. Content for demonstration purposes only."
+
+[menus]
+[[menus.main]]
+name = "Home"
+pageRef = "/"
+weight = 10
