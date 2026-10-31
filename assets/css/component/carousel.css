@@ -1,0 +1,32 @@
+/* Carousel */
+.carousel { position: relative; margin: 2rem 0 1rem; }
+.carousel-track {
+  list-style: none; margin: 0; padding: 0; display: flex; gap: 0;
+  overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+.carousel-slide { flex: 0 0 100%; scroll-snap-align: start; scroll-snap-stop: always; }
+.carousel-link { display: block; position: relative; min-height: 20rem; }
+.carousel-cover { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.carousel-copy {
+  position: relative; z-index: 1; padding: clamp(1.5rem, 5vw, 3rem);
+  max-width: 34rem; min-height: 20rem; display: flex; flex-direction: column;
+  justify-content: flex-end; gap: 0.5rem;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.75), transparent);
+  color: #fff;
+}
+.carousel-dots { position: absolute; bottom: 0.75rem; right: 1rem; z-index: 2; display: flex; gap: 0.5rem; }
+.carousel-dot {
+  width: 0.75rem; height: 0.75rem; border-radius: 50%; padding: 0;
+  border: 1px solid #fff; background: rgba(255, 255, 255, 0.4); cursor: pointer;
+}
+.carousel-dot.active, .carousel-dot:hover, .carousel-dot:focus-visible { background: #fff; }
+.carousel-dot:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+.carousel-featured { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1rem; }
+
+@media (prefers-reduced-motion: reduce) {
+  .carousel-track { scroll-behavior: auto; flex-direction: column; overflow-x: visible; }
+  .carousel-slide { flex-basis: auto; }
+  .carousel-dots { display: none; }
+  * { animation: none !important; transition: none !important; }
+}

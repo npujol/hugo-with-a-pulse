@@ -1,0 +1,41 @@
+{{- /* Cover-image-driven carousel for slide-type pages and sections with covers */ -}}
+{{- if not site.Params.home.disableSlide -}}
+{{- $slides := where (where site.RegularPages "Type" "slide") "Params.cover" "!=" nil -}}
+{{- $sectionSlides := where site.Sections "Params.cover" "!=" nil -}}
+{{- $slides = union $slides $sectionSlides -}}
+{{- with $slides -}}
+<section class="carousel" id="carousel" role="region" aria-label="{{ i18n "featuredContent" }}">
+  <ul class="carousel-track" tabindex="0" aria-label="{{ i18n "featuredContent" }}">
+    {{- range $i, $s := . }}
+    <li class="carousel-slide" id="carousel-slide-{{ add $i 1 }}" aria-roledescription="slide" aria-label="{{ add $i 1 }} / {{ len $slides }}">
+      <a class="carousel-link" href="{{ $s.RelPermalink }}">
+        <img class="cover carousel-cover" src="{{ $s.Params.cover | relURL }}" alt="{{ $s.Title }}" loading="lazy">
+        <div class="carousel-copy">
+          <h2>{{ $s.Title }}</h2>
+          {{ with $s.Description }}<p class="carousel-description">{{ . }}</p>{{ else }}{{ with $s.Summary }}<p class="carousel-description">{{ . | plainify | truncate 160 }}</p>{{ end }}{{ end }}
+        </div>
+      </a>
+    </li>
+    {{- end }}
+  </ul>
+  {{- if gt (len .) 1 }}
+  <div class="carousel-dots" role="tablist" aria-label="{{ i18n "featuredContent" }}">
+    {{- range $i, $s := . }}
+    <button class="carousel-dot{{ if eq $i 0 }} active{{ end }}" type="button"
+      data-slide="{{ add $i 1 }}" aria-label="{{ i18n "goToSlide" (add $i 1) }}"
+      aria-selected="{{ if eq $i 0 }}true{{ else }}false{{ end }}"></button>
+    {{- end }}
+  </div>
+  {{- end }}
+</section>
+{{- if site.Params.home.featuredListing -}}
+{{- with site.Params.home.featuredListing }}
+<div class="carousel-featured">
+  {{- range $t := . }}{{ with site.GetPage (printf "/%s" $t) }}
+    <a href="{{ .RelPermalink }}">{{ .LinkTitle | default (printf "%s" $t) }}</a>
+  {{ end }}{{ end -}}
+</div>
+{{- end }}
+{{- end }}
+{{- end -}}
+{{- end -}}

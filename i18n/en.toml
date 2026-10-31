@@ -79,3 +79,9 @@ other = "Language"
 
 [readTime]
 other = "min read"
+
+[featuredContent]
+other = "Featured content"
+
+[goToSlide]
+other = "Go to slide {{ . }}"

@@ -79,3 +79,9 @@ other = "Sprache"
 
 [readTime]
 other = "Min. Lesezeit"
+
+[featuredContent]
+other = "Ausgewählte Inhalte"
+
+[goToSlide]
+other = "Zu Folie {{ . }} gehen"

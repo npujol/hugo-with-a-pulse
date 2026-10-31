@@ -1,4 +1,5 @@
 <section class="home">
+  {{ partial "my-hugo/carousel.html" . }}
   {{ $home := site.GetPage "/" }}
   {{ with $home }}<article class="home-intro">
     <div class="home-portrait">{{ with site.Params.portrait }}<img class="cover home-cover" src="{{ . | relURL }}" alt="{{ site.Params.author | default site.Title }}">{{ end }}<p class="home-name">{{ site.Params.author | default site.Title }}</p>{{ with site.Params.role }}<p class="home-role">{{ . }}</p>{{ end }}</div>

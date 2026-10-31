@@ -8,10 +8,14 @@
   <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
   {{ with resources.Get "css/theme.css" }}{{ $style := . | minify | fingerprint }}<link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">{{ end }}
   {{ if site.Params.search.enable }}{{ with resources.Get "css/component/search.css" }}{{ $css := . | minify | fingerprint }}<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">{{ end }}{{ end }}
+  {{ $carouselSlides := union (where (where site.RegularPages "Type" "slide") "Params.cover" "!=" nil) (where site.Sections "Params.cover" "!=" nil) }}
+  {{ if and (not site.Params.home.disableSlide) $carouselSlides }}{{ with resources.Get "css/component/carousel.css" }}{{ $css := . | minify | fingerprint }}<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">{{ end }}{{ end }}
   {{ with resources.Get "js/blood-cursor.js" }}{{ $script := . | minify | fingerprint }}<script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}" defer></script>{{ end }}
   {{ with .OutputFormats.Get "rss" }}<link rel="alternate" type="application/rss+xml" href="{{ .RelPermalink }}" title="{{ site.Title }}">{{ end }}
   {{ if .IsHome }}{{ with .OutputFormats.Get "json" }}<link rel="alternate" type="application/json" href="{{ .RelPermalink }}" title="{{ site.Title }}">{{ end }}{{ end }}
   {{ if site.Params.search.enable }}{{ with resources.Get "js/search.js" }}{{ $script := . | minify | fingerprint }}<script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}" defer></script>{{ end }}{{ end }}
+  {{ $carouselSlides := union (where (where site.RegularPages "Type" "slide") "Params.cover" "!=" nil) (where site.Sections "Params.cover" "!=" nil) }}
+  {{ if and (not site.Params.home.disableSlide) $carouselSlides }}{{ with resources.Get "js/carousel.js" }}{{ $script := . | minify | fingerprint }}<script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}" defer></script>{{ end }}{{ end }}
 </head>
 <body>
   <a class="skip-link" href="#main">{{ i18n "skipToContent" }}</a>
