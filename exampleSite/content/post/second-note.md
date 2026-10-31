@@ -1,4 +1,5 @@
 ---
+title: "Second Sample Note"
 date: 2025-02-14
 description: "Another sample note for the listing page."
 ---

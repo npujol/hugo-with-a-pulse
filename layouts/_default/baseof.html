@@ -7,14 +7,17 @@
   {{ with .Description }}<meta name="description" content="{{ . }}">{{ end }}
   <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
   {{ with resources.Get "css/theme.css" }}{{ $style := . | minify | fingerprint }}<link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">{{ end }}
+  {{ if site.Params.search.enable }}{{ with resources.Get "css/component/search.css" }}{{ $css := . | minify | fingerprint }}<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">{{ end }}{{ end }}
   {{ with resources.Get "js/blood-cursor.js" }}{{ $script := . | minify | fingerprint }}<script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}" defer></script>{{ end }}
   {{ with .OutputFormats.Get "rss" }}<link rel="alternate" type="application/rss+xml" href="{{ .RelPermalink }}" title="{{ site.Title }}">{{ end }}
   {{ if .IsHome }}{{ with .OutputFormats.Get "json" }}<link rel="alternate" type="application/json" href="{{ .RelPermalink }}" title="{{ site.Title }}">{{ end }}{{ end }}
+  {{ if site.Params.search.enable }}{{ with resources.Get "js/search.js" }}{{ $script := . | minify | fingerprint }}<script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}" defer></script>{{ end }}{{ end }}
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header"><a class="site-title" href="{{ site.Home.RelPermalink }}">{{ site.Title }}</a>
     <nav aria-label="Main navigation">{{ range site.Menus.main }}<a href="{{ .URL }}">{{ .Name }}</a>{{ end }}</nav>
+    {{ partial "my-hugo/search.html" . }}
   </header>
   <main id="main">
     {{ if not .Params.headless }}
