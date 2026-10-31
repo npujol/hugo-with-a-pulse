@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="{{ site.Language.Lang | default "en" }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ if .IsHome }}{{ site.Title }}{{ else }}{{ .Title }} · {{ site.Title }}{{ end }}</title>
+  {{ with .Description }}<meta name="description" content="{{ . }}">{{ end }}
+  <link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
+  {{ with resources.Get "css/theme.css" }}{{ $style := . | minify | fingerprint }}<link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">{{ end }}
+  {{ with resources.Get "js/blood-cursor.js" }}{{ $script := . | minify | fingerprint }}<script src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}" defer></script>{{ end }}
+  {{ with .OutputFormats.Get "rss" }}<link rel="alternate" type="application/rss+xml" href="{{ .RelPermalink }}" title="{{ site.Title }}">{{ end }}
+  {{ if .IsHome }}{{ with .OutputFormats.Get "json" }}<link rel="alternate" type="application/json" href="{{ .RelPermalink }}" title="{{ site.Title }}">{{ end }}{{ end }}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><a class="site-title" href="{{ site.Home.RelPermalink }}">{{ site.Title }}</a>
+    <nav aria-label="Main navigation">{{ range site.Menus.main }}<a href="{{ .URL }}">{{ .Name }}</a>{{ end }}</nav>
+  </header>
+  <main id="main">
+    {{ if not .Params.headless }}
+      {{ if .IsHome }}{{ partial "my-hugo/home.html" . }}
+      {{ else if eq .Section "slide" }}{{ partial "my-hugo/slide.html" . }}
+      {{ else if .IsSection }}{{ partial "my-hugo/list.html" . }}
+      {{ else if and .File (eq .File.ContentBaseName "pin") }}{{ partial "my-hugo/single.html" . }}
+      {{ else if eq .Kind "404" }}{{ block "main" . }}<h1>Page not found</h1><p><a href="{{ site.Home.RelPermalink }}">Return home</a></p>{{ end }}
+      {{ else }}{{ partial "my-hugo/single.html" . }}{{ end }}
+    {{ end }}
+  </main>
+  <footer class="site-footer">
+    <div class="footer-main">{{ with site.GetPage "footer" }}<div class="footer-content">{{ .Content }}</div>{{ end }}
+      <nav aria-label="Footer navigation">{{ range site.Menus.footer }}{{ $url := .URL }}{{ if eq .Identifier "email" }}{{ $url = printf "mailto:%s" site.Params.author.email }}{{ end }}<a href="{{ $url }}"{{ with .Params.target }} target="{{ . }}" rel="noopener noreferrer"{{ end }}>{{ .Name }}</a>{{ end }}</nav>
+    </div>
+    <small>{{ with site.Params.copyright }}{{ . }}{{ else }}© {{ now.Year }} {{ site.Title }}{{ end }}</small>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<section class="listing">
+  <header class="page-header"><p class="eyebrow">From the notebook</p><h1>{{ .Title }}</h1>{{ with .Content }}<div class="content">{{ . }}</div>{{ end }}</header>
+  {{ $pages := where .RegularPages "Draft" false }}
+  {{ if $pages }}<div class="post-list">
+    {{ range $pages.ByDate.Reverse }}<article class="post-card">
+      {{ with .Date }}<time datetime="{{ .Format "2006-01-02" }}">{{ .Format "Jan 2, 2006" }}</time>{{ end }}
+      <h2><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></h2>
+      {{ with .Description }}<p>{{ . }}</p>{{ else }}{{ with .Summary }}<p>{{ . | plainify | htmlUnescape | truncate 220 }}</p>{{ end }}{{ end }}
+      <a class="read-more" href="{{ .RelPermalink }}">Read article <span aria-hidden="true">→</span></a>
+    </article>{{ end }}
+  </div>{{ else }}<p>No posts yet.</p>{{ end }}
+</section>

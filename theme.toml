@@ -1,0 +1,6 @@
+name = "Hugo With a Pulse"
+license = "MIT"
+licenselink = "https://opensource.org/licenses/MIT"
+description = "A personal Hugo theme with a dark look, a lively cursor, and a sense of humor."
+min_version = "0.120.0"
+author = "Naivy Pujol Méndez"

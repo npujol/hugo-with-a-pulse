@@ -1,0 +1,9 @@
+{{- if eq (.Get 0) "begin" -}}
+<div class="gallery">
+{{- else if eq (.Get 0) "end" -}}
+</div>
+{{- else -}}
+  {{- $src := .Get "img" -}}
+  {{- $label := .Get "label" | default "Gallery photograph" -}}
+  <figure><img src="{{ $src | relURL | safeURL }}" alt="{{ $label }}" loading="lazy"><figcaption>{{ $label }}</figcaption></figure>
+{{- end -}}
