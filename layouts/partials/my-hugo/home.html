@@ -5,10 +5,15 @@
     <div class="home-copy"><div class="content">{{ .Content }}</div></div>
   </article>{{ else }}<h1>{{ site.Title }}</h1>{{ end }}
   {{ with site.GetPage "slide.md" }}{{ partial "my-hugo/slide.html" . }}{{ end }}
-  {{ with site.GetPage "post" }}<section class="recent-posts"><h2>Recent posts</h2>
-    <ul class="post-list">{{ range first 5 .RegularPages.ByDate.Reverse }}<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ with .Date }} <time datetime="{{ .Format "2006-01-02" }}">{{ .Format "Jan 2, 2006" }}</time>{{ end }}</li>{{ end }}</ul>
-    <a href="{{ .RelPermalink }}">All posts →</a>
-  </section>{{ end }}
+  {{ $postSection := site.GetPage "post" }}
+  {{ with $postSection }}{{ $posts := where .RegularPages "Draft" false }}
+    {{ $.Paginate ($posts.ByDate.Reverse) }}
+    {{ with $.Paginator.Pages }}<section class="recent-posts"><h2>Recent posts</h2>
+      <ul class="post-list">{{ range . }}<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ with .Date }} <time datetime="{{ .Format "2006-01-02" }}">{{ .Format "Jan 2, 2006" }}</time>{{ end }}</li>{{ end }}</ul>
+      {{ partial "my-hugo/pagination.html" $ }}
+      <a href="{{ $postSection.RelPermalink }}">All posts →</a>
+    </section>{{ end }}
+  {{ end }}
   {{ with site.GetPage "pin.md" }}<section class="home-gallery"><p class="eyebrow">In pictures</p><h2><a href="{{ .RelPermalink }}">Gallery <span aria-hidden="true">↗</span></a></h2><div class="gallery-preview">
     {{ $galleryPage := . }}{{ range slice "/medias/flower.jpg" "/medias/window.jpg" "/medias/guitar.jpg" }}<a href="{{ $galleryPage.RelPermalink }}" aria-label="Visit gallery"><img src="{{ . | relURL }}" alt="" loading="lazy"></a>{{ end }}
   </div></section>{{ end }}

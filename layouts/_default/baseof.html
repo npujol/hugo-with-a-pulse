@@ -20,7 +20,7 @@
     {{ if not .Params.headless }}
       {{ if .IsHome }}{{ partial "my-hugo/home.html" . }}
       {{ else if eq .Section "slide" }}{{ partial "my-hugo/slide.html" . }}
-      {{ else if .IsSection }}{{ partial "my-hugo/list.html" . }}
+      {{ else if or .IsSection (eq .Kind "taxonomy") (eq .Kind "term") }}{{ partial "my-hugo/list.html" . }}
       {{ else if and .File (eq .File.ContentBaseName "pin") }}{{ partial "my-hugo/single.html" . }}
       {{ else if eq .Kind "404" }}{{ block "main" . }}<h1>Page not found</h1><p><a href="{{ site.Home.RelPermalink }}">Return home</a></p>{{ end }}
       {{ else }}{{ partial "my-hugo/single.html" . }}{{ end }}

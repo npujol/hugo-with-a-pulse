@@ -142,3 +142,11 @@ time, .post-meta { color: var(--muted); font-size: .85rem; white-space: nowrap; 
   .blood-cursor { position: fixed; inset: 0; z-index: 9999; width: 100vw; height: 100vh; pointer-events: none; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* Pagination */
+.pagination { display: flex; align-items: center; gap: 1rem; justify-content: center; margin: 3rem 0 1rem; }
+.pagination a, .pagination span { color: inherit; }
+.pagination [aria-disabled="true"] { opacity: 0.4; }
+.pagination-numbers { display: flex; gap: 0.5rem; }
+.pagination-numbers [aria-current="page"] { text-decoration: underline; text-underline-offset: 4px; font-weight: 700; }
+.pagination-gap { opacity: 0.5; }
